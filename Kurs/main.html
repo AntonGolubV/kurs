@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Document</title>
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <div class="inLogo">Погода</div>
+            <div class="inLogo">Минска</div>
+        </div>
+        <button type="button" class="btn btn-outline-primary log">Log in</button>
+    </div>
+    <div class="main"></div>
+    <div class="footer"></div>
+    <script>
+        let buttonReg = document.createElement('button');
+        let inputName = document.createElement('input');
+        let inputPassword = document.createElement('input');
+        let buttonLog = document.querySelector('.btn-outline-primary');
+        let board = document.createElement('div');
+        buttonLog.addEventListener('click', function(){
+            
+            board.classList.add('board');
+            board.style.left = `${document.documentElement.clientWidth/2-250}px`;
+            board.style.top = `${document.documentElement.clientHeight/2-150}px`;
+
+            let name = document.createElement('h2');
+            name.innerText = 'UserName';
+
+            inputName.type = 'text'
+            inputName.placeholder = 'person';
+            inputName.classList.add('input');
+
+            let password = document.createElement('h2');
+            password.innerText = 'Password';
+            
+            inputPassword.type = 'password';
+            inputPassword.classList.add('input');
+
+            let footerBoard = document.createElement('div');
+            footerBoard.classList.add('footerBoard');
+            
+            
+            buttonReg.classList.add('buttonReg'); 
+            buttonReg.innerText = 'Enter';
+
+            board.append(name);
+            board.append(inputName);
+            board.append(password);
+            board.append(inputPassword);
+            footerBoard.append(buttonReg); 
+            board.append(footerBoard);
+            document.body.append(board);
+    
+        });
+
+        buttonReg.addEventListener('click', function(){
+            if((inputName.value.length <= 3) && (inputPassword.value.length >= 8)){
+                alert('ошибка: неправильное имя');
+            }
+            if((inputName.value.length > 3) && (inputPassword.value.length < 8)){
+                alert('ошибка: слишком короткий пароль');
+            }
+            if((inputName.value.length > 3) && (inputPassword.value.length >= 8)){
+                localStorage.setItem('name', 'inputName.value');
+           localStorage.setItem('password', 'inputPassword.value');
+           board.remove();
+           buttonReg.remove();
+           inputName.remove();
+            }
+           
+           
+        });
+    </script>
+</body>
+</html>
